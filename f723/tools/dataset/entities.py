@@ -35,10 +35,10 @@ def make_pair(nt_left, nt_right):
 
 
 NucleotideFeatures = namedtuple('NucleotideFeatures', 'secondary_structure base fragment_length fragment_index')
-PairFeatures = namedtuple('Features', 'neighbours_left neighbours_right relation')
+PairFeatures = namedtuple('PairFeatures', 'neighbours_left neighbours_right relation')
 Pair = namedtuple('Pair', 'nt_left nt_right')
 PairMeta = namedtuple('PairMeta', 'pdb_id pair type')
-PairData = namedtuple('Pair', 'features meta')
+PairData = namedtuple('PairData', 'features meta')
 
 
 Chain = namedtuple('Chain', 'pdb_id id nts ss_bps noncanonical_bps')
