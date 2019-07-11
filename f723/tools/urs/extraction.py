@@ -1,8 +1,10 @@
 import os
 import pickle
+import dill
 
 from tqdm import tqdm
 from collections import defaultdict
+from itertools import chain
 
 from URS import RSS
 
@@ -121,3 +123,12 @@ def iterate_urs_models(sec_struct_dir):
         pdb_id, _ = os.path.splitext(fname)
 
         yield pdb_id, get_sec_struct_model(sec_struct_dir, pdb_id)
+
+
+def get_batch(index, dataset_dir):
+    with open(os.path.join(dataset_dir, 'batch_{}'.format(index)), 'rb') as infile:
+        return dill.load(infile)
+
+
+def get_data(dataset_dir):
+    return chain.from_iterable((get_batch(i, dataset_dir) for i in tqdm(range(30))))
