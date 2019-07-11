@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.metrics import precision_recall_fscore_support, precision_recall_curve, roc_auc_score, roc_curve
 
 
-def plot_precision_recall_curve(classification_result):
+def plot_precision_recall_curve(classification_result, **kwargs):
     print('precision_recall_fscore_support')
     print(precision_recall_fscore_support(
         classification_result.target, classification_result.predicted))
@@ -17,7 +17,7 @@ def plot_precision_recall_curve(classification_result):
 
     plt.xlabel('precision', fontsize=23)
     plt.ylabel('recall', fontsize=23)
-    plt.plot(precision, recall)
+    plt.plot(precision, recall, **kwargs)
 
     return precision, recall, thresholds
 
