@@ -59,7 +59,7 @@ class NucleotideRNN:
         scores = tf.einsum('mnj,ji->mni', normalized_outputs, normalized_discriminator)
 
         self.alpha = tf.Variable(1, dtype=tf.float32)
-        self.proba = tf.math.sigmoid(self.alpha * tf.reduce_max(scores, axis=2))
+        self.proba = tf.sigmoid(self.alpha * tf.reduce_max(scores, axis=2))
 
         self.loss = tf.losses.log_loss(self.target_placeholder, self.proba)
 

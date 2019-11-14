@@ -6,8 +6,8 @@ from sklearn.metrics import precision_recall_fscore_support, precision_recall_cu
 
 def plot_precision_recall_curve(classification_result, **kwargs):
     print('precision_recall_fscore_support')
-    print(precision_recall_fscore_support(
-        classification_result.target, classification_result.predicted))
+    #print(precision_recall_fscore_support(
+    #    classification_result.target, classification_result.predicted))
 
     precision, recall, thresholds = precision_recall_curve(
         classification_result.target, classification_result.predicted_proba)
