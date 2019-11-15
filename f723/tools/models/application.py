@@ -14,7 +14,6 @@ def group_k_fold(make_model, feature_vector):
 
     predicted_proba = np.zeros_like(feature_vector.target, dtype=np.float32)
     predicted = np.zeros_like(feature_vector.target, dtype=np.float32)
-    feature_importances = []
 
     for train_index, test_index in group_kfold.split(
             feature_vector.features, feature_vector.target, feature_vector.pdb_ids):
@@ -27,11 +26,7 @@ def group_k_fold(make_model, feature_vector):
 
         predicted[test_index] = y_pred
         predicted_proba[test_index] = model.predict_proba(X_test)[:, 1]
-        feature_importances.append(model.feature_importances_)
 
         print(precision_recall_fscore_support(y_test, y_pred))
 
-    return ClassificationResult(
-        target=feature_vector.target,
-        predicted=predicted,
-        predicted_proba=predicted_proba)
+    return ClassificationResult(target=feature_vector.target, predicted=predicted, predicted_proba=predicted_proba)
